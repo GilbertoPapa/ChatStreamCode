@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "574151680512",
+    "firebase_url": "https://chatstreamcode-fee5e.firebaseio.com",
+    "project_id": "chatstreamcode-fee5e",
+    "storage_bucket": "chatstreamcode-fee5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:574151680512:android:8d7cce1eb43f01f6",
+        "android_client_info": {
+          "package_name": "com.gilbertopapa.chatstreamcode"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "574151680512-gnib6n8m890u5drfpsrh2g5l63h1l7t2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gilbertopapa.chatstreamcode",
+            "certificate_hash": "25d6c2b74bf42ad4fede6ca351b1ac6eac348aa9"
+          }
+        },
+        {
+          "client_id": "574151680512-lp3b862sjp0tkip9n75iao2qs2s17fe1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC7k1M5b_XjtcMnkmlM2J8xiNDODZw94-0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "574151680512-lp3b862sjp0tkip9n75iao2qs2s17fe1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

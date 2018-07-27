@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorPrimary"
+    tools:context="com.gilbertopapa.chatstreamcode.LoginActivity">
+
+
+    <ImageView
+        android:id="@+id/imageViewLogin"
+        android:layout_width="200dp"
+        android:layout_height="163dp"
+        app:srcCompat="@drawable/speechbubbles"
+        android:layout_marginBottom="14dp"
+        android:layout_above="@+id/edtEmailLoginId"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:id="@+id/edtEmailLoginId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="243dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:ems="10"
+        android:hint="Digite seu email."
+        android:inputType="textPersonName"
+        android:textColor="@color/colorText" />
+
+    <EditText
+        android:id="@+id/edtKeyLoginId"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="41dp"
+        android:ems="10"
+        android:hint="Digite sua senha."
+        android:inputType="textPersonName"
+        android:textColor="@color/colorText"
+        android:layout_alignTop="@+id/edtEmailLoginId"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btnLoginId"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryDark"
+        android:text="Login"
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/edtKeyLoginId"
+        android:layout_alignStart="@+id/edtKeyLoginId"
+        />
+
+
+    <TextView
+        android:id="@+id/tvRegisterUser"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Cadastre-se."
+        android:textColor="@color/colorText"
+        android:layout_below="@+id/btnLoginId"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
