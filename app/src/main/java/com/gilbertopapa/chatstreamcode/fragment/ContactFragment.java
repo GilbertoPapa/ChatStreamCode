@@ -33,7 +33,7 @@ public class ContactFragment extends Fragment {
     private ArrayAdapter adapter;
     private ArrayList<Contact> contacts;
     private DatabaseReference firebase;
-    private ValueEventListener valueEventListenerContatos;
+    private ValueEventListener valueEventListenerContact;
 
     public ContactFragment() {
         // Required empty public constructor
@@ -42,13 +42,13 @@ public class ContactFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebase.addValueEventListener( valueEventListenerContatos );
+        firebase.addValueEventListener(valueEventListenerContact);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        firebase.removeEventListener( valueEventListenerContatos );
+        firebase.removeEventListener(valueEventListenerContact);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ContactFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
         //Monta listview e adapter
-        listView = (ListView) view.findViewById(R.id.lv_contatos);
+        listView = (ListView) view.findViewById(R.id.lv_contact);
         /*adapter = new ArrayAdapter(
                 getActivity(),
                 R.layout.list_contact,
@@ -72,15 +72,15 @@ public class ContactFragment extends Fragment {
         listView.setAdapter( adapter );
 
         //Recuperar contacts do firebase
-        Preferences preferencias = new Preferences(getActivity());
-        String identificadorUsuarioLogado = preferencias.getIdentificador();
+        Preferences preferences = new Preferences(getActivity());
+        String identifyUserLogin = preferences.getIdentify();
 
         firebase = ConfigurationFireBase.getFirebase()
                     .child("contacts")
-                    .child( identificadorUsuarioLogado );
+                    .child( identifyUserLogin );
 
         //Listener para recuperar contacts
-        valueEventListenerContatos = new ValueEventListener() {
+        valueEventListenerContact = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 

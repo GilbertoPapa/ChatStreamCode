@@ -55,4 +55,6 @@ public class Preferences {
         return preferences.getString(KEY_IDENTIFY,null);
     }
 
+
+
 }

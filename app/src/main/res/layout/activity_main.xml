@@ -16,7 +16,7 @@
         android:id="@+id/slt_tabs"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></com.gilbertopapa.chatstreamcode.helper.SlidingTabLayout>
+        android:layout_height="wrap_content" />
 
 
     <android.support.v4.view.ViewPager
