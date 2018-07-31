@@ -29,7 +29,7 @@ import java.util.ArrayList;
  */
 public class ContactFragment extends Fragment {
 
-    private ListView listView;
+    private ListView listViewContacts;
     private ArrayAdapter adapter;
     private ArrayList<Contact> contacts;
     private DatabaseReference firebase;
@@ -55,23 +55,23 @@ public class ContactFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
 
-        //Instânciar objetos
+
         contacts = new ArrayList<>();
 
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_contact, container, false);
 
-        //Monta listview e adapter
-        listView = (ListView) view.findViewById(R.id.lv_contact);
+
+        listViewContacts = (ListView) view.findViewById(R.id.lv_contact);
         /*adapter = new ArrayAdapter(
                 getActivity(),
                 R.layout.list_contact,
                 contacts
         );*/
         adapter = new ContactAdapter(getActivity(), contacts);
-        listView.setAdapter( adapter );
+        listViewContacts.setAdapter( adapter );
 
-        //Recuperar contacts do firebase
+
         Preferences preferences = new Preferences(getActivity());
         String identifyUserLogin = preferences.getIdentify();
 
@@ -79,19 +79,19 @@ public class ContactFragment extends Fragment {
                     .child("contacts")
                     .child( identifyUserLogin );
 
-        //Listener para recuperar contacts
+
         valueEventListenerContact = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                //Limpar lista
+
                 contacts.clear();
 
-                //Listar contacts
+
                 for (DataSnapshot dados: dataSnapshot.getChildren() ){
 
-                    Contact contato = dados.getValue( Contact.class );
-                    contacts.add( contato );
+                    Contact contact = dados.getValue( Contact.class );
+                    contacts.add( contact );
 
 
                 }
@@ -106,20 +106,18 @@ public class ContactFragment extends Fragment {
             }
         };
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listViewContacts.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Intent intent = new Intent(getActivity(), TalkActivity.class);
+                Intent intentTalk = new Intent(getActivity(), TalkActivity.class);
 
-                // recupera dados a serem passados
-                Contact contato = contacts.get(position);
+                Contact contact = contacts.get(position);
 
-                // enviando dados para conversa activity
-                intent.putExtra("nome", contato.getName() );
-                intent.putExtra("email", contato.getEmail() );
+                intentTalk.putExtra("name", contact.getName() );
+                intentTalk.putExtra("email", contact.getEmail() );
 
-                startActivity(intent);
+                startActivity(intentTalk);
 
             }
         });
