@@ -8,15 +8,15 @@
     tools:context="com.gilbertopapa.chatstreamcode.AuthenticatorActivity">
 
     <ImageView
-        android:id="@+id/imageViewAuth"
+        android:id="@+id/iv_auth"
         android:layout_width="200dp"
         android:layout_height="163dp"
         app:srcCompat="@mipmap/ic_launcher"
-        android:layout_above="@+id/tvAuth"
+        android:layout_above="@+id/tv_auth"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/edtCodeAthId"
+        android:id="@+id/edt_codeAuthId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:elevation="1dp"
@@ -24,14 +24,14 @@
         android:hint="Digite o código."
         android:inputType="textPersonName"
         android:textColor="@color/colorText"
-        android:layout_below="@+id/tvAuth"
+        android:layout_below="@+id/tv_auth"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp" />
 
 
 
     <TextView
-        android:id="@+id/tvAuth"
+        android:id="@+id/tv_auth"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -43,7 +43,7 @@
         android:layout_alignParentStart="true" />
 
     <Button
-        android:id="@+id/btnAthId"
+        android:id="@+id/btn_authId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
@@ -52,7 +52,7 @@
         android:text="Validar"
         android:textColor="@color/colorText"
         android:layout_marginTop="35dp"
-        android:layout_below="@+id/edtCodeAthId"
+        android:layout_below="@+id/edt_codeAuthId"
         android:layout_centerHorizontal="true" />
 
 

@@ -50,26 +50,26 @@ public class RegisterUserActivity extends AppCompatActivity {
 
         Permission.checkPermission(1, this, permissions);
 
-        name = (EditText) findViewById(R.id.edtNameId);
+        name = (EditText) findViewById(R.id.edt_nameId);
 
-        phone = (EditText) findViewById(R.id.edtPhoneId);
+        phone = (EditText) findViewById(R.id.edt_phoneId);
         SimpleMaskFormatter simpleMaskFormatterPhone = new SimpleMaskFormatter("NNNNN-NNNN");
         MaskTextWatcher maskPhone = new MaskTextWatcher(phone, simpleMaskFormatterPhone);
         phone.addTextChangedListener(maskPhone);
 
-        locale = (EditText) findViewById(R.id.edtLocaleId);
+        locale = (EditText) findViewById(R.id.edt_localeId);
         SimpleMaskFormatter simpleMaskFormatterLocale = new SimpleMaskFormatter("NN");
         MaskTextWatcher maskLocale = new MaskTextWatcher(locale, simpleMaskFormatterLocale);
         locale.addTextChangedListener(maskLocale);
 
-        country = (EditText) findViewById(R.id.edtCountryId);
+        country = (EditText) findViewById(R.id.edt_countryId);
         SimpleMaskFormatter simpleMaskFormatterCountry = new SimpleMaskFormatter("+NN");
         final MaskTextWatcher maskCountry = new MaskTextWatcher(country, simpleMaskFormatterCountry);
         country.addTextChangedListener(maskCountry);
 
-        email = (EditText) findViewById(R.id.edtEmailLoginId);
+        email = (EditText) findViewById(R.id.edt_emailLoginId);
 
-        btnRegister = (Button) findViewById(R.id.btnRegisterId);
+        btnRegister = (Button) findViewById(R.id.btn_registerId);
 
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override

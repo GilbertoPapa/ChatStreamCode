@@ -8,7 +8,7 @@
     tools:context="com.gilbertopapa.chatstreamcode.RegisterUserActivity">
 
     <ImageView
-        android:id="@+id/imageViewRegister"
+        android:id="@+id/iv_register"
         android:layout_width="200dp"
         android:layout_height="163dp"
         android:layout_alignParentTop="true"
@@ -17,10 +17,10 @@
         app:srcCompat="@drawable/usuario" />
 
     <EditText
-        android:id="@+id/edtNameId"
+        android:id="@+id/edt_nameId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/imageViewRegister"
+        android:layout_below="@+id/iv_register"
         android:layout_centerHorizontal="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
@@ -31,47 +31,47 @@
         android:textColor="@color/colorText" />
 
     <EditText
-        android:id="@+id/edtPhoneId"
+        android:id="@+id/edt_phoneId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/edtLocaleId"
-        android:layout_alignBottom="@+id/edtLocaleId"
+        android:layout_alignBaseline="@+id/edt_localeId"
+        android:layout_alignBottom="@+id/edt_localeId"
         android:layout_marginRight="20dp"
-        android:layout_toEndOf="@+id/edtLocaleId"
+        android:layout_toEndOf="@+id/edt_localeId"
         android:ems="10"
         android:hint="9999999999"
         android:inputType="phone"
         android:textColor="@color/colorText" />
 
     <EditText
-        android:id="@+id/edtLocaleId"
+        android:id="@+id/edt_localeId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/edtNameId"
-        android:layout_toEndOf="@+id/edtCountryId"
+        android:layout_below="@+id/edt_nameId"
+        android:layout_toEndOf="@+id/edt_countryId"
         android:ems="2"
         android:hint="11"
         android:inputType="phone"
         android:textColor="@color/colorText" />
 
     <EditText
-        android:id="@+id/edtCountryId"
+        android:id="@+id/edt_countryId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignStart="@+id/edtNameId"
-        android:layout_below="@+id/edtNameId"
+        android:layout_alignStart="@+id/edt_nameId"
+        android:layout_below="@+id/edt_nameId"
         android:ems="2"
         android:hint="+55"
         android:inputType="phone"
         android:textColor="@color/colorText" />
 
     <Button
-        android:id="@+id/btnRegisterId"
+        android:id="@+id/btn_registerId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edtPhoneId"
-        android:layout_alignStart="@+id/edtCountryId"
-        android:layout_below="@+id/edtPhoneId"
+        android:layout_alignEnd="@+id/edt_phoneId"
+        android:layout_alignStart="@+id/edt_countryId"
+        android:layout_below="@+id/edt_phoneId"
         android:layout_marginTop="54dp"
         android:background="@color/colorPrimaryDark"
         android:text="Cadastrar"
@@ -79,12 +79,12 @@
         />
 
     <EditText
-        android:id="@+id/edtEmailLoginId"
+        android:id="@+id/edt_emailLoginId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/edtPhoneId"
-        android:layout_alignStart="@+id/btnRegisterId"
-        android:layout_below="@+id/edtPhoneId"
+        android:layout_alignEnd="@+id/edt_phoneId"
+        android:layout_alignStart="@+id/btn_registerId"
+        android:layout_below="@+id/edt_phoneId"
         android:ems="10"
         android:hint="Digite seu email."
         android:inputType="textEmailAddress"

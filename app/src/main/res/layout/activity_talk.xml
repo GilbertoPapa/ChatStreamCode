@@ -18,10 +18,13 @@
         android:layout_height="wrap_content"
         tools:layout_editor_absoluteX="8dp"
         tools:layout_editor_absoluteY="0dp"
+        android:layout_below="@+id/toolbar_talk"
+        android:layout_above="@+id/ll_msg"
         >
 
     </ListView>
     <LinearLayout
+        android:id="@+id/ll_msg"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/colorAccent"
@@ -30,12 +33,14 @@
         >
 
         <EditText
+            android:id="@+id/edt_msg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:hint="Mensagem"
             android:layout_weight="1"
             />
         <ImageButton
+            android:id="@+id/btn_sendMsg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_send"

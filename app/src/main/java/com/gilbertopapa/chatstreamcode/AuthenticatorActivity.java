@@ -24,8 +24,8 @@ public class AuthenticatorActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_authenticator);
 
-        codeAutentic = (EditText)findViewById(R.id.edtCodeAthId);
-        btnAutentic = (Button)findViewById(R.id.btnAthId);
+        codeAutentic = (EditText)findViewById(R.id.edt_codeAuthId);
+        btnAutentic = (Button)findViewById(R.id.btn_authId);
 
         SimpleMaskFormatter simpleMaskFormatterPhone = new SimpleMaskFormatter("NNNN");
         MaskTextWatcher maskCode = new MaskTextWatcher(codeAutentic, simpleMaskFormatterPhone);

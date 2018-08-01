@@ -14,11 +14,11 @@
         android:layout_height="163dp"
         app:srcCompat="@drawable/speechbubbles"
         android:layout_marginBottom="14dp"
-        android:layout_above="@+id/edtEmailLoginId"
+        android:layout_above="@+id/edt_emailLoginId"
         android:layout_centerHorizontal="true" />
 
     <EditText
-        android:id="@+id/edtEmailLoginId"
+        android:id="@+id/edt_emailLoginId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -42,11 +42,11 @@
         android:hint="Digite sua senha."
         android:inputType="textPersonName"
         android:textColor="@color/colorText"
-        android:layout_alignTop="@+id/edtEmailLoginId"
+        android:layout_alignTop="@+id/edt_emailLoginId"
         android:layout_alignParentStart="true" />
 
     <Button
-        android:id="@+id/btnLoginId"
+        android:id="@+id/btn_loginId"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@color/colorPrimaryDark"
@@ -54,17 +54,17 @@
         android:textColor="@color/colorText"
         android:layout_below="@+id/edtKeyLoginId"
         android:layout_alignStart="@+id/edtKeyLoginId"
-        />
+        android:layout_alignEnd="@+id/edtKeyLoginId" />
 
 
     <TextView
-        android:id="@+id/tvRegisterUser"
+        android:id="@+id/tv_registerUser"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
         android:text="Cadastre-se."
         android:textColor="@color/colorText"
-        android:layout_below="@+id/btnLoginId"
+        android:layout_below="@+id/btn_loginId"
         android:layout_centerHorizontal="true" />
 
 

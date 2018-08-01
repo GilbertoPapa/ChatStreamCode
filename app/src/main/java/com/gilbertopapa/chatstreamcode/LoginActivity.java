@@ -18,6 +18,9 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthUserCollisionException;
+import com.google.firebase.auth.FirebaseAuthWeakPasswordException;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -32,10 +35,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        btnLogin = (Button) findViewById(R.id.btnLoginId);
-        edtEmail = (EditText) findViewById(R.id.edtEmailLoginId);
+        btnLogin = (Button) findViewById(R.id.btn_loginId);
+        edtEmail = (EditText) findViewById(R.id.edt_emailLoginId);
         edtKey = (EditText) findViewById(R.id.edtKeyLoginId);
-        tvRegister = (TextView) findViewById(R.id.tvRegisterUser);
+        tvRegister = (TextView) findViewById(R.id.tv_registerUser);
 
 
 
@@ -81,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
                     Toast.makeText(LoginActivity.this, "Login efetuado com sucesso", Toast.LENGTH_LONG).show();
 
                 } else {
-                    /*
+
                     String erroException = "";
                     try {
 
@@ -102,7 +105,7 @@ public class LoginActivity extends AppCompatActivity {
                     } catch (Exception e) {
                         erroException = " Problemas ao cadastrar usuario ";
                         e.printStackTrace();
-                    }*/
+                    }
 
                     Toast.makeText(LoginActivity.this, "Erro ao efetuar login", Toast.LENGTH_LONG).show();
                 }
