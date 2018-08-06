@@ -9,7 +9,7 @@
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:text="Mariana Silva"
-        android:id="@+id/tv_name"
+        android:id="@+id/tv_nameContact"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:textColor="@android:color/black"
@@ -20,7 +20,7 @@
         />
 
     <TextView
-        android:id="@+id/tv_email"
+        android:id="@+id/tv_emailContact"
         android:text="mariana.silva@gmail.com"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

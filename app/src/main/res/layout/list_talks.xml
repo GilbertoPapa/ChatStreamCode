@@ -8,7 +8,7 @@
     <TextView
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:text="Mariana Silva"
-        android:id="@+id/tv_title"
+        android:id="@+id/tv_nameTalk"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
         android:textColor="@android:color/black"
@@ -19,7 +19,7 @@
         />
 
     <TextView
-        android:id="@+id/tv_subtitle"
+        android:id="@+id/tv_lastTalk"
         android:text="mariana.silva@gmail.com"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

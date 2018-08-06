@@ -40,7 +40,8 @@ public class RegisterUserActivity extends AppCompatActivity {
             Manifest.permission.INTERNET
     };
 
-    private User user;
+    private User user ;
+
     private FirebaseAuth firebaseAuth;
 
     @Override
@@ -101,7 +102,17 @@ public class RegisterUserActivity extends AppCompatActivity {
                 boolean CheckSMS = sendSMS("+" + phoneMask, msgSendSMS);
 
 
+                user = new User();
+                user.setName(nameUser);
+                user.setPhone(phoneUser);
+                user.setEmail(email.getText().toString());
+                user.setKey(tokenUser);
+                registerUserFinal();
+
+
+
                 if (CheckSMS) {
+
                     Intent intentRegisAuth = new Intent(RegisterUserActivity.this, AuthenticatorActivity.class);
                     startActivity(intentRegisAuth);
                     finish();
@@ -130,7 +141,6 @@ public class RegisterUserActivity extends AppCompatActivity {
                     String identifyUser = Base64Custom.codeBase64(user.getEmail());
                     user.setId(identifyUser);
                     user.save();
-
 
                     Preferences preferences = new Preferences(RegisterUserActivity.this);
                     preferences.saveUserPreferencesIdentify(identifyUser);

@@ -8,11 +8,14 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.gilbertopapa.chatstreamcode.adapter.MassageAdapter;
 import com.gilbertopapa.chatstreamcode.config.ConfigurationFireBase;
 import com.gilbertopapa.chatstreamcode.helper.Base64Custom;
 import com.gilbertopapa.chatstreamcode.helper.Preferences;
 import com.gilbertopapa.chatstreamcode.model.Message;
+import com.gilbertopapa.chatstreamcode.model.Talk;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -26,12 +29,13 @@ public class TalkActivity extends AppCompatActivity {
     private String nameReceiver, emailReceiver, idReceiver;
     private EditText edtMsg;
     private ImageButton btnMsg;
-    private String idSender;
+    private String nameSender,idSender;
     private DatabaseReference databaseReference;
     private ListView listView;
-    private ArrayList<String> messageArray;
-    private ArrayAdapter arrayAdapter;
+    private ArrayList<Message> messageArray;
+    private ArrayAdapter<Message> arrayAdapter;
     private ValueEventListener valueEventListenerMsg;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +49,7 @@ public class TalkActivity extends AppCompatActivity {
 
         Preferences preferences = new Preferences(TalkActivity.this);
         idSender = preferences.getIdentify();
+        nameSender = preferences.getUserName();
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -59,7 +64,8 @@ public class TalkActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
         messageArray = new ArrayList<>();
-        arrayAdapter = new ArrayAdapter(TalkActivity.this, android.R.layout.simple_list_item_1, messageArray);
+
+        arrayAdapter = new MassageAdapter(TalkActivity.this, messageArray);
         listView.setAdapter(arrayAdapter);
 
         databaseReference = ConfigurationFireBase.getFirebase()
@@ -73,9 +79,9 @@ public class TalkActivity extends AppCompatActivity {
 
                 messageArray.clear();
 
-                for (DataSnapshot snapshot : dataSnapshot.getChildren()){
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
                     Message message = snapshot.getValue(Message.class);
-                    messageArray.add(message.getMsg());
+                    messageArray.add(message);
                 }
                 arrayAdapter.notifyDataSetChanged();
             }
@@ -94,19 +100,69 @@ public class TalkActivity extends AppCompatActivity {
                 String textMsg = edtMsg.getText().toString();
 
                 if (textMsg.isEmpty()) {
-                    //
+                    Toast.makeText(TalkActivity.this, "Digite uma mensagem !", Toast.LENGTH_LONG).show();
                 } else {
 
                     Message message = new Message();
                     message.setIdUserMsg(idSender);
                     message.setMsg(textMsg);
 
-                    saveMsg(idSender, idReceiver, message);
-                    edtMsg.setText("");
+                    //remetente
+                    Boolean aBooleanMessageSender = saveMsg(idSender, idReceiver, message);
+                    if (!aBooleanMessageSender) {
+                        Toast.makeText(TalkActivity.this, "Problema ao salvar sua mensagem, tente novamente!", Toast.LENGTH_LONG).show();
+                    } else {
+                        //destinatário
+                        Boolean aBooleanMessageReceiver = saveMsg(idReceiver, idSender, message);
+                        if (!aBooleanMessageReceiver) {
+                            Toast.makeText(TalkActivity.this, "Problema ao enviar sua mensagem !", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    //remetente
+                    Talk talk = new Talk();
+                    talk.setIdUser(idReceiver);
+                    talk.setName(nameReceiver);
+                    talk.setMsg(textMsg);
+                    Boolean aBooleanTalkSender = saveTalk(idSender, idReceiver, talk);
+                    if (!aBooleanTalkSender) {
+                        Toast.makeText(TalkActivity.this, "Problema ao salvar sua mensagem, tente novamente!", Toast.LENGTH_LONG).show();
+                    } else {
+                        //destinatário
+                        talk = new Talk();
+                        talk.setIdUser(idSender);
+                        talk.setName(nameSender);
+                        talk.setMsg(textMsg);
+                        Boolean aBooleanTalkReceiver = saveTalk(idReceiver, idSender, talk);
+                        if (!aBooleanTalkReceiver) {
+                            Toast.makeText(TalkActivity.this, "Problema ao enviar sua mensagem !", Toast.LENGTH_LONG).show();
+                        }
+
+
+                        edtMsg.setText("");
+                    }
                 }
             }
         });
 
+    }
+
+
+    private boolean saveTalk(String idSender, String idReceiver, Talk talk){
+
+        try {
+
+            databaseReference = ConfigurationFireBase.getFirebase().child("talks");
+            databaseReference
+                    .child(idSender)
+                    .child(idReceiver)
+                    .setValue(talk);
+
+            return true;
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
+        }
     }
 
     private boolean saveMsg(String idSender, String idReceiver, Message message) {

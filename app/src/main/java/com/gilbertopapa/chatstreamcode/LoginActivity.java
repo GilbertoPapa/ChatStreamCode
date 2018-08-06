@@ -29,6 +29,8 @@ public class LoginActivity extends AppCompatActivity {
     private User user;
     private FirebaseAuth firebaseAuth;
     private TextView tvRegister;
+    //private ValueEventListener valueEventListener;
+    //private DatabaseReference databaseReference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +41,6 @@ public class LoginActivity extends AppCompatActivity {
         edtEmail = (EditText) findViewById(R.id.edt_emailLoginId);
         edtKey = (EditText) findViewById(R.id.edtKeyLoginId);
         tvRegister = (TextView) findViewById(R.id.tv_registerUser);
-
 
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -76,8 +77,24 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
 
-                    String identifyUserLogin = Base64Custom.codeBase64(user.getEmail());
                     Preferences preferences = new Preferences(LoginActivity.this);
+                    String identifyUserLogin = Base64Custom.codeBase64(user.getEmail());
+                    /*
+                    databaseReference = ConfigurationFireBase.getFirebase().child("users").child(identifyUserLogin);
+
+                    valueEventListener = new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+
+                        }
+
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+
+                        }
+                    };
+                    databaseReference.addListenerForSingleValueEvent(valueEventListener);
+                   */
                     preferences.saveUserPreferencesIdentify(identifyUserLogin);
 
                     goMainActivity();
@@ -114,9 +131,9 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-    private void  checkUserLogin(){
+    private void checkUserLogin() {
         firebaseAuth = ConfigurationFireBase.getFirebaseAuth();
-        if (firebaseAuth.getCurrentUser()!=null){
+        if (firebaseAuth.getCurrentUser() != null) {
             goMainActivity();
         }
     }

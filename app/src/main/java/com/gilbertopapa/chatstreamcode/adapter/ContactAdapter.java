@@ -17,10 +17,10 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
     private ArrayList<Contact> contacts;
     private Context context;
 
-    public ContactAdapter(Context context, ArrayList<Contact> objects) {
-        super(context, 0, objects);
+    public ContactAdapter(Context c, ArrayList<Contact> objects) {
+        super(c, 0, objects);
         this.contacts = objects;
-        this.context = context;
+        this.context = c;
     }
 
     @Override
@@ -38,8 +38,8 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
             view = inflater.inflate(R.layout.list_contact, parent, false);
 
 
-            TextView nameContact = (TextView) view.findViewById(R.id.tv_name);
-            TextView emailContact = (TextView) view.findViewById(R.id.tv_email);
+            TextView nameContact = (TextView) view.findViewById(R.id.tv_nameContact);
+            TextView emailContact = (TextView) view.findViewById(R.id.tv_emailContact);
 
             Contact contact = contacts.get( position );
             nameContact.setText( contact.getName());

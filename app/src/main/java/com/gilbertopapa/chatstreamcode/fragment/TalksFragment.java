@@ -11,23 +11,19 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.gilbertopapa.chatstreamcode.R;
+import com.gilbertopapa.chatstreamcode.TalkActivity;
+import com.gilbertopapa.chatstreamcode.adapter.TalkAdapter;
 import com.gilbertopapa.chatstreamcode.config.ConfigurationFireBase;
+import com.gilbertopapa.chatstreamcode.helper.Base64Custom;
 import com.gilbertopapa.chatstreamcode.helper.Preferences;
-import com.gilbertopapa.chatstreamcode.model.Contact;
+import com.gilbertopapa.chatstreamcode.model.Talk;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.ValueEventListener;
-import com.gilbertopapa.chatstreamcode.R;
+
 import java.util.ArrayList;
-
-
-import whatsapp.cursoandroid.com.whatsapp.activity.ConversaActivity;
-import whatsapp.cursoandroid.com.whatsapp.adapter.ConversaAdapter;
-import whatsapp.cursoandroid.com.whatsapp.config.ConfiguracaoFirebase;
-import whatsapp.cursoandroid.com.whatsapp.helper.Base64Custom;
-import whatsapp.cursoandroid.com.whatsapp.helper.Preferencias;
-import whatsapp.cursoandroid.com.whatsapp.model.Conversa;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -35,11 +31,11 @@ import whatsapp.cursoandroid.com.whatsapp.model.Conversa;
 public class TalksFragment extends Fragment {
 
     private ListView listView;
-    private ArrayAdapter<Contact> adapter;
-    private ArrayList<Contact> conversas;
+    private ArrayAdapter<Talk> adapter;
+    private ArrayList<Talk> talks;
 
-    private DatabaseReference firebase;
-    private ValueEventListener valueEventListenerConversas;
+    private DatabaseReference databaseReference;
+    private ValueEventListener valueEventListener;
 
     public TalksFragment() {
         // Required empty public constructor
@@ -49,32 +45,32 @@ public class TalksFragment extends Fragment {
     @Override
     public View onCreateView(final LayoutInflater inflater, final ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.fragment_talk, container, false);
 
-        // Monta listview e adapter
-        conversas = new ArrayList<>();
-        listView = (ListView) view.findViewById(R.id.lv_conversas);
-        adapter = new ConversaAdapter(getActivity(), conversas );
+
+        talks = new ArrayList<>();
+        listView = (ListView) view.findViewById(R.id.lv_talks);
+        adapter = new TalkAdapter(getActivity(), talks);
         listView.setAdapter( adapter );
 
-        // recuperar dados do usuário
-        Preferences preferencias = new Preferences(getActivity());
-        String idUsuarioLogado = preferencias.getIdentificador();
 
-        // Recuperar conversas do Firebase
-        firebase = ConfigurationFireBase.getFirebase()
-                    .child("conversas")
-                    .child( idUsuarioLogado );
+        Preferences preferences = new Preferences(getActivity());
+        String identifyUserLogin = preferences.getIdentify();
 
-        valueEventListenerConversas = new ValueEventListener() {
+
+        databaseReference = ConfigurationFireBase.getFirebase()
+                    .child("talks")
+                    .child( identifyUserLogin );
+
+        valueEventListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
-                conversas.clear();
+                talks.clear();
                 for ( DataSnapshot dados: dataSnapshot.getChildren() ){
-                    Conversa conversa = dados.getValue( Conversa.class );
-                    conversas.add(conversa);
+                    Talk talk = dados.getValue( Talk.class );
+                    talks.add(talk);
                 }
                 adapter.notifyDataSetChanged();
 
@@ -86,19 +82,19 @@ public class TalksFragment extends Fragment {
             }
         };
 
-        //Adicionar evento de clique na lista
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                Conversa conversa = conversas.get(position);
-                Intent intent = new Intent(getActivity(), ConversaActivity.class );
+                Talk talk = talks.get(position);
+                Intent intentTalk = new Intent(getActivity(), TalkActivity.class );
 
-                intent.putExtra("nome", conversa.getNome() );
-                String email = Base64Custom.decodificarBase64( conversa.getIdUsuario() );
-                intent.putExtra("email", email );
+                intentTalk.putExtra("nome", talk.getName() );
+                String email = Base64Custom.decodeBase64( talk.getIdUser() );
+                intentTalk.putExtra("email", email );
 
-                startActivity(intent);
+                startActivity(intentTalk);
 
             }
         });
@@ -110,12 +106,12 @@ public class TalksFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-        firebase.addValueEventListener(valueEventListenerConversas);
+        databaseReference.addValueEventListener(valueEventListener);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-        firebase.removeEventListener(valueEventListenerConversas);
+        databaseReference.removeEventListener(valueEventListener);
     }
 }

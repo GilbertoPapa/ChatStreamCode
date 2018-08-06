@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
 
         switch (item.getItemId()) {
             case R.id.item_exit:
-                // logoutUser();
+                //logoutUser();
                 return true;
             case R.id.item_config:
                 return true;
@@ -99,16 +99,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 String emailContact = editText.getText().toString();
-                if (emailContact.isEmpty()){
-                    Toast.makeText(MainActivity.this,"Preencha o e-mail",Toast.LENGTH_LONG).show();
-                }else{
+                if (emailContact.isEmpty()) {
+                    Toast.makeText(MainActivity.this, "Preencha o e-mail", Toast.LENGTH_LONG).show();
+                } else {
                     idenfyContact = Base64Custom.codeBase64(emailContact);
                     databaseReference = ConfigurationFireBase.getFirebase().child("Users").child(idenfyContact);
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
 
-                            if (dataSnapshot.getValue()!= null){
+                            if (dataSnapshot.getValue() != null) {
 
                                 User userContact = dataSnapshot.getValue(User.class);
 
@@ -125,8 +125,8 @@ public class MainActivity extends AppCompatActivity {
                                 contact.setName(userContact.getName());
                                 databaseReference.setValue(contact);
 
-                            }else{
-                                Toast.makeText(MainActivity.this,"Usuário não possui cadastro.",Toast.LENGTH_LONG).show();
+                            } else {
+                                Toast.makeText(MainActivity.this, "Usuário não possui cadastro.", Toast.LENGTH_LONG).show();
                             }
                         }
 
